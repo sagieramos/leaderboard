@@ -2,6 +2,53 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/modules/util.js":
+/*!*****************************!*\
+  !*** ./src/modules/util.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var recentScores = [{
+  name: 'name',
+  score: 100
+}, {
+  name: 'name',
+  score: 20
+}, {
+  name: 'name',
+  score: 50
+}, {
+  name: 'name',
+  score: 78
+}, {
+  name: 'name',
+  score: 125
+}, {
+  name: 'name',
+  score: 77
+}, {
+  name: 'name',
+  score: 42
+}];
+var displayRecentScores = function displayRecentScores(parentContainer, element) {
+  var container = document.querySelector(parentContainer);
+  if (!container) return;
+  var fragment = document.createDocumentFragment();
+  recentScores.forEach(function (item) {
+    var newItem = document.createElement(element);
+    newItem.innerHTML = "".concat(item.name, ": ").concat(item.score);
+    fragment.appendChild(newItem);
+  });
+  container.appendChild(fragment);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayRecentScores);
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/styles/style.css":
 /*!********************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/styles/style.css ***!
@@ -22,22 +69,84 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    box-sizing: border-box;
-  }
-  
-  * {
-    font-size: 16px;
-    font-weight: 400;
-    color: #3d3d3d;
-  }
-  
-  #scores li:nth-child(even) {
-    background-color: #dddddd
-  }`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;IACI,8BAA8B;IAC9B,SAAS;IACT,UAAU;IACV,yBAAyB;IACzB,sBAAsB;EACxB;;EAEA;IACE,eAAe;IACf,gBAAgB;IAChB,cAAc;EAChB;;EAEA;IACE;EACF","sourcesContent":["body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    box-sizing: border-box;\n  }\n  \n  * {\n    font-size: 16px;\n    font-weight: 400;\n    color: #3d3d3d;\n  }\n  \n  #scores li:nth-child(even) {\n    background-color: #dddddd\n  }"],"sourceRoot":""}]);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: #f4f4f4;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: #3d3d3d;
+}
+
+header {
+  padding: 32px;
+}
+
+#scores {
+  border: 1px solid #333;
+}
+
+#scores li {
+  padding: 4px 8px;
+}
+
+#scores li:nth-child(even) {
+  background-color: #ddd;
+}
+
+#refresh {
+  padding: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.sub-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sub-headline {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+}
+
+.l-container {
+  display: flex;
+  justify-content: center;
+  align-items: first baseline;
+  gap: 40px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+input,
+#submit {
+  padding: 4px;
+  font-size: 1rem;
+}
+
+#submit {
+  width: 90px;
+  align-self: flex-end;
+  font-weight: 600;
+}
+`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,8BAA8B;EAC9B,eAAe;EACf,gBAAgB;EAChB,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;EACE,SAAS;EACT,UAAU;EACV,cAAc;AAChB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,YAAY;EACZ,gBAAgB;EAChB,eAAe;AACjB;;AAEA;EACE,iBAAiB;EACjB,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,SAAS;EACT,UAAU;AACZ;;AAEA;EACE,mBAAmB;EACnB,aAAa;EACb,SAAS;AACX;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,2BAA2B;EAC3B,SAAS;AACX;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;;EAEE,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,WAAW;EACX,oBAAoB;EACpB,gBAAgB;AAClB","sourcesContent":["body {\n  font-family: Arial, sans-serif;\n  font-size: 16px;\n  font-weight: 400;\n  background-color: #f4f4f4;\n  box-sizing: border-box;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  color: #3d3d3d;\n}\n\nheader {\n  padding: 32px;\n}\n\n#scores {\n  border: 1px solid #333;\n}\n\n#scores li {\n  padding: 4px 8px;\n}\n\n#scores li:nth-child(even) {\n  background-color: #ddd;\n}\n\n#refresh {\n  padding: 4px;\n  font-weight: 600;\n  font-size: 1rem;\n}\n\n.sub-title {\n  font-size: 1.5rem;\n  font-weight: 600;\n  text-align: center;\n}\n\nul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n.sub-headline {\n  margin-bottom: 24px;\n  display: flex;\n  gap: 12px;\n}\n\n.l-container {\n  display: flex;\n  justify-content: center;\n  align-items: first baseline;\n  gap: 40px;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n\ninput,\n#submit {\n  padding: 4px;\n  font-size: 1rem;\n}\n\n#submit {\n  width: 90px;\n  align-self: flex-end;\n  font-weight: 600;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -565,9 +674,14 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
+/* harmony import */ var _modules_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/util */ "./src/modules/util.js");
 
+
+document.addEventListener('DOMContentLoaded', function () {
+  (0,_modules_util__WEBPACK_IMPORTED_MODULE_1__["default"])('#scores', 'li');
+});
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle8ef1c3f5936a00dbb37e.js.map
+//# sourceMappingURL=bundled52274e2f9b51c2d874a.js.map
