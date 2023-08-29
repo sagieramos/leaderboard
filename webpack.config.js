@@ -13,14 +13,14 @@ module.exports = {
   },
   plugins: [
     new HtmlwebpackPlugin({
-      title: 'To-Do List',
+      title: 'Leaderboard',
       template: 'src/index.html',
     }),
   ],
   devtool: 'source-map',
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'docs'),
+      directory: path.resolve(__dirname, 'dist'),
     },
     port: 3000,
     open: true,
