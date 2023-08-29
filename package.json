@@ -1,5 +1,5 @@
 {
-  "name": "ToDoList",
+  "name": "Leaderboard",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "homepage": "https://sagieramos.github.io/ToDoList",
+  "homepage": "https://sagieramos.github.io/leaderboard",
   "devDependencies": {
     "@babel/core": "^7.22.10",
     "@babel/preset-env": "^7.22.10",
