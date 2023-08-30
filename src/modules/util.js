@@ -2,7 +2,6 @@ class Leaderboard {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
     this.gameName = 'microverse-leaderboard';
-    this.gameList = [];
     this.gameId = localStorage.getItem(this.gameName);
     this.error = [];
 
@@ -14,9 +13,12 @@ class Leaderboard {
       try {
         this.gameId = await this.createGame(this.gameName);
         localStorage.setItem(this.gameName, this.gameId);
+        this.gameIdAvailable = true;
       } catch (error) {
         this.error.push(error);
       }
+    } else {
+      this.gameIdAvailable = true;
     }
   }
 

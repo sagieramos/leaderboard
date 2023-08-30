@@ -31,7 +31,9 @@ header {
 #refresh {
   padding: 4px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  color: #3333337e;
+  background: none;
 }
 
 .sub-title {
@@ -75,4 +77,11 @@ input,
   width: 90px;
   align-self: flex-end;
   font-weight: 600;
+  font-size: 0.9rem;
+  color: #3333337e;
+  background: none;
+}
+
+.hidden {
+  display: none;
 }

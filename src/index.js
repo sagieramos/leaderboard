@@ -1,17 +1,6 @@
 import './styles/style.css';
-import Leaderboard from './modules/util';
+import {handleDisplay, handleSubmit} from './modules/handleDisplay';
 
-const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
+document.addEventListener('click', handleSubmit);
 
-const leaderboard = new Leaderboard(baseUrl);
-
-
-(async () => {
-    try {
-      await leaderboard.addScoreToGame('Stanley', 4);
-      const scores = await leaderboard.getScoresForGame();
-      console.log(scores);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  })();
+handleDisplay();
