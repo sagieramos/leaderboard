@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: #f4f4f4;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: #3d3d3d;
+}
+
+header {
+  padding: 32px;
+}
+
+#scores {
+  border: 1px solid #333;
+}
+
+#scores li {
+  padding: 4px 8px;
+}
+
+#scores li:nth-child(even) {
+  background-color: #ddd;
+}
+
+#refresh {
+  padding: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.sub-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sub-headline {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+}
+
+.l-container {
+  display: flex;
+  justify-content: center;
+  align-items: first baseline;
+  gap: 40px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+input,
+#submit {
+  padding: 4px;
+  font-size: 1rem;
+}
+
+#submit {
+  width: 90px;
+  align-self: flex-end;
+  font-weight: 600;
+}
