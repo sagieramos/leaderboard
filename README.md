@@ -40,7 +40,7 @@
 - CSS
 - JavaScript
 ### Key Features <a name="key-features"></a>
-- A plain HTML markup with minimum styling (just to make the layout), because I will implement styles in the fnext version:
+- All data is preserved thanks to the external [Leaderboard API service](https://microverse.notion.site/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -55,7 +55,6 @@
 ### Prerequisites
 
 In order to run this project you need:
-
 
 ### Setup
 

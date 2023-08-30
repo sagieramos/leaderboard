@@ -44,6 +44,8 @@ const handleSubmit = async (e) => {
         const result = await leaderboard.addScoreToGame(name, score);
         handleDisplay();
         status.textContent = result;
+        nameInput.value = '';
+        scoreInput.value = '';
       } catch (error) {
         status.textContent = `${error}: Check your Internet`;
       }
@@ -51,11 +53,9 @@ const handleSubmit = async (e) => {
       setTimeout(() => {
         status.className = 'hidden';
       }, 3000);
-      nameInput.value = '';
-      scoreInput.value = '';
     }
-  } else if(target.matches('#refresh')) {
-    window.location = window.location.href + '?refresh=' + Date.now();
+  } else if (target.matches('#refresh')) {
+    window.location = `${window.location.href}?refresh=${Date.now()}`;
   }
 };
 

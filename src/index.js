@@ -1,6 +1,10 @@
 import './styles/style.css';
 import {handleDisplay, handleSubmit} from './modules/handleDisplay';
 
-document.addEventListener('click', handleSubmit);
+const init = () => {
+    document.addEventListener('click', handleSubmit);
+    handleDisplay();
+}
 
-handleDisplay();
+window.addEventListener('DOMContentLoaded', init);
+

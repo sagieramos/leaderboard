@@ -14,17 +14,17 @@
             <article class="scores-container">
                 <ul class="sub-headline">
                     <li class="sub-title">Recent scores</li>
-                    <li><button id="refresh">Refresh</button></li>
+                    <li><button type="button" id="refresh">Refresh</button></li>
                 </ul>
                 <ul id="scores"></ul>
             </article>
             <article>
                 <h2 class="sub-title sub-headline">Add your score</h2>
                 <form action="#">
-                    <input type="text" id="nameInut" name="name" placeholder="Your name">
-                    <input type="number" id="scoreInput" name="score" placeholder="Your score">
+                    <input type="text" id="nameInut" name="name" placeholder="Your name" required maxlength="20">
+                    <input type="number" id="scoreInput" name="score" placeholder="Your score" required max="999">
                     <div id="status" class="hidden"></div>
-                    <button id="submit">Submit</button>
+                    <button type="submit" id="submit">Submit</button>
                 </form>
             </article>
         </section>
