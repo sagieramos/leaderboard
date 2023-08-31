@@ -1,6 +1,10 @@
 import './styles/style.css';
-import displayRecentScores from './modules/util';
+import {handleDisplay, handleSubmit} from './modules/handleDisplay';
 
-document.addEventListener('DOMContentLoaded', () => {
-    displayRecentScores('#scores', 'li');
-})
+const init = () => {
+    document.addEventListener('click', handleSubmit);
+    handleDisplay();
+}
+
+window.addEventListener('DOMContentLoaded', init);
+

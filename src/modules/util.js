@@ -1,26 +1,74 @@
-const recentScores = [
-  { name: 'name', score: 100 },
-  { name: 'name', score: 20 },
-  { name: 'name', score: 50 },
-  { name: 'name', score: 78 },
-  { name: 'name', score: 125 },
-  { name: 'name', score: 77 },
-  { name: 'name', score: 42 },
-];
+class Leaderboard {
+  constructor(baseUrl) {
+    this.baseUrl = baseUrl;
+    this.gameName = 'microverse-leaderboard';
+    this.gameId = localStorage.getItem(this.gameName);
+    this.error = [];
 
-const displayRecentScores = (parentContainer, element) => {
-  const container = document.querySelector(parentContainer);
-  if (!container) return;
+    this.initGameId();
+  }
 
-  const fragment = document.createDocumentFragment();
+  async initGameId() {
+    if (!this.gameId) {
+      try {
+        this.gameId = await this.createGame(this.gameName);
+        localStorage.setItem(this.gameName, this.gameId);
+        this.gameIdAvailable = true;
+      } catch (error) {
+        this.error.push(error);
+      }
+    } else {
+      this.gameIdAvailable = true;
+    }
+  }
 
-  recentScores.forEach((item) => {
-    const newItem = document.createElement(element);
-    newItem.innerHTML = `${item.name}: ${item.score}`;
-    fragment.appendChild(newItem);
-  });
+  async createGame(name) {
+    const url = `${this.baseUrl}games/`;
 
-  container.appendChild(fragment);
-};
+    const requestData = {
+      name,
+    };
 
-export default displayRecentScores;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
+    });
+
+    const data = await response.json();
+    return data.result;
+  }
+
+  async addScoreToGame(user, score) {
+    const url = `${this.baseUrl}games/${this.gameId}/scores/`;
+
+    const requestData = {
+      user,
+      score,
+    };
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
+    });
+
+    const data = await response.json();
+    return data.result;
+  }
+
+  async getScoresForGame() {
+    if (!this.gameId) return null;
+    const url = `${this.baseUrl}games/${this.gameId}/scores/`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.result;
+  }
+}
+
+export default Leaderboard;
