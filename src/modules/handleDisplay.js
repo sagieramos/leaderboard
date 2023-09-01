@@ -14,7 +14,8 @@ const handleDisplay = async () => {
     const fragment = document.createDocumentFragment();
     scores.forEach((item) => {
       const newItem = document.createElement('li');
-      newItem.innerHTML = `${item.user}: ${item.score}`;
+      newItem.className = 'score-list';
+      newItem.innerHTML = `<p>${item.user}</p><p class='score-num'>${item.score}</p>`;
       fragment.appendChild(newItem);
     });
 
@@ -22,6 +23,13 @@ const handleDisplay = async () => {
       scoreContainer.firstChild.remove();
     }
     scoreContainer.appendChild(fragment);
+    if (scores.length > 0) {
+      scoreContainer.classList.add('border');
+    } else {
+      scoreContainer.innerHTML = `<div class="empty-warning">
+      <h2>No Recent Scores</h2><p>Add a new score</P>
+      </div>`;
+    }
   } catch (error) {
     status.textContent = `${error}: Check your Internet`;
   }
@@ -31,8 +39,8 @@ const handleSubmit = async (e) => {
   const { target } = e;
   if (target.matches('#submit')) {
     e.preventDefault();
-    status.textContent = 'Creating leaderboard score';
     status.classList.remove('hidden');
+    status.textContent = 'Creating leaderboard score...';
 
     const nameInput = document.getElementById('nameInut');
     const scoreInput = document.getElementById('scoreInput');
@@ -44,9 +52,11 @@ const handleSubmit = async (e) => {
         const result = await leaderboard.addScoreToGame(name, score);
         handleDisplay();
         status.textContent = result;
+        status.className = 'success';
         nameInput.value = '';
         scoreInput.value = '';
       } catch (error) {
+        status.className = 'error';
         status.textContent = `${error}: Check your Internet`;
       }
 

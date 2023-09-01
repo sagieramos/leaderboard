@@ -4,7 +4,7 @@
 
 <div align="center">
 
-  <img src="screenshootL1.png" alt="overview" width="auto"  height="auto" />
+  <img src="screenshot.gif" alt="overview" width="auto"  height="auto" />
   <br/>
 
   <h3><b>Leaderboard</b></h3>
@@ -33,7 +33,7 @@
 
 # 📖 Fullstack Development <a name="leaderboard"></a>
 
-**The leaderboard website displays scores submitted by different players. It also allows you to submit your score. All data is preserved thanks to the external [Leaderboard API service](https://microverse.notion.site/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3). 
+**The leaderboard website displays scores submitted by different players. It also allows you to submit your score. All data is preserved thanks to the external [Leaderboard API service](https://microverse.notion.site/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3).**
 
 ## 🛠  Built With <a name="built-with"></a>
 - HTML
@@ -41,6 +41,7 @@
 - JavaScript
 ### Key Features <a name="key-features"></a>
 - All data is preserved thanks to the external [Leaderboard API service](https://microverse.notion.site/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3)
+- UI/UX improved
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -119,7 +120,7 @@ If you like this project, please consider subscribing to my GitHub account for u
 
 - **Can I run this project run on Docker?**
 
-  - Yes
+  - yes
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
