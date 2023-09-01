@@ -14,8 +14,6 @@ body {
   color: #3d3d3d;
 }
 
-
-
 main,
 header,
 footer {
@@ -25,7 +23,7 @@ footer {
 
 header {
   padding: 12px 24px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 32px;
 }
 
@@ -35,19 +33,25 @@ h1 {
   color: #333;
   text-transform: uppercase;
   letter-spacing: 24px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 
 .scores-container {
   background-color: #f7f7f7;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 300px;
 }
 
-
 .border {
   border: 1px solid #333;
+}
+
+.empty-warning {
+  margin: 12px;
 }
 
 #scores {
@@ -57,7 +61,7 @@ h1 {
 
 #scores li {
   padding: 8px 8px;
-    font-size: 18px;
+  font-size: 18px;
 }
 
 #scores li:nth-child(even) {
@@ -71,9 +75,8 @@ h1 {
 
 .sub-title {
   color: #333333e7;
-    font-size: 24px;
-    font-weight: 600;
-    
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .input-field {
@@ -100,7 +103,7 @@ ul {
   background-color: #f7f7f7;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 300px;
 }
 
@@ -112,12 +115,28 @@ ul {
   gap: 24px;
 }
 
+.score-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-num {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 }
+
 input {
   padding: 4px;
   font-size: 1rem;
@@ -126,13 +145,13 @@ input {
 .btn {
   align-self: flex-end;
   background-color: #6c757d;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .hidden {
