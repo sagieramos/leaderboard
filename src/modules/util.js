@@ -62,7 +62,7 @@ class Leaderboard {
   }
 
   async getScoresForGame() {
-    if (!this.gameId) return null;
+    if (!this.gameId) return [];
     const url = `${this.baseUrl}games/${this.gameId}/scores/`;
 
     const response = await fetch(url);

@@ -44,17 +44,23 @@ var handleDisplay = /*#__PURE__*/function () {
             scoreContainer.firstChild.remove();
           }
           scoreContainer.appendChild(fragment);
-          _context.next = 13;
+          console.log(scores);
+          if (scores.length > 0) {
+            scoreContainer.classList.add('border');
+          } else {
+            scoreContainer.innerHTML = '<h2>No Recent Scores</h2><p>Add new scores</P>';
+          }
+          _context.next = 15;
           break;
-        case 10:
-          _context.prev = 10;
+        case 12:
+          _context.prev = 12;
           _context.t0 = _context["catch"](0);
           status.textContent = "".concat(_context.t0, ": Check your Internet");
-        case 13:
+        case 15:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[0, 12]]);
   }));
   return function handleDisplay() {
     return _ref.apply(this, arguments);
@@ -68,18 +74,18 @@ var handleSubmit = /*#__PURE__*/function () {
         case 0:
           target = e.target;
           if (!target.matches('#submit')) {
-            _context2.next = 26;
+            _context2.next = 28;
             break;
           }
           e.preventDefault();
           status.textContent = 'Creating leaderboard score';
-          status.classList.remove('hidden');
+          status.className = 'hidden';
           nameInput = document.getElementById('nameInut');
           scoreInput = document.getElementById('scoreInput');
           name = nameInput.value.trim();
           score = parseFloat(scoreInput.value);
           if (!(name && score)) {
-            _context2.next = 24;
+            _context2.next = 26;
             break;
           }
           _context2.prev = 10;
@@ -89,30 +95,32 @@ var handleSubmit = /*#__PURE__*/function () {
           result = _context2.sent;
           handleDisplay();
           status.textContent = result;
+          status.className = 'success';
           nameInput.value = '';
           scoreInput.value = '';
-          _context2.next = 23;
+          _context2.next = 25;
           break;
-        case 20:
-          _context2.prev = 20;
+        case 21:
+          _context2.prev = 21;
           _context2.t0 = _context2["catch"](10);
+          status.className = 'error';
           status.textContent = "".concat(_context2.t0, ": Check your Internet");
-        case 23:
+        case 25:
           setTimeout(function () {
             status.className = 'hidden';
           }, 3000);
-        case 24:
-          _context2.next = 27;
-          break;
         case 26:
+          _context2.next = 29;
+          break;
+        case 28:
           if (target.matches('#refresh')) {
             window.location = "".concat(window.location.href, "?refresh=").concat(Date.now());
           }
-        case 27:
+        case 29:
         case "end":
           return _context2.stop();
       }
-    }, _callee2, null, [[10, 20]]);
+    }, _callee2, null, [[10, 21]]);
   }));
   return function handleSubmit(_x) {
     return _ref2.apply(this, arguments);
@@ -279,7 +287,7 @@ var Leaderboard = /*#__PURE__*/function () {
                 _context4.next = 2;
                 break;
               }
-              return _context4.abrupt("return", null);
+              return _context4.abrupt("return", []);
             case 2:
               url = "".concat(this.baseUrl, "games/").concat(this.gameId, "/scores/");
               _context4.next = 5;
@@ -327,11 +335,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `body {
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
   font-size: 16px;
-  font-weight: 400;
   background-color: #f4f4f4;
   box-sizing: border-box;
 }
@@ -342,34 +351,73 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
   color: #3d3d3d;
 }
 
-header {
-  padding: 32px;
+
+
+main,
+header,
+footer {
+  margin: 0 auto;
+  width: 100%;
 }
 
-#scores {
+header {
+  padding: 12px 24px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 24px;
+}
+
+.scores-container {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+
+.border {
   border: 1px solid #333;
 }
 
+#scores {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 #scores li {
-  padding: 4px 8px;
+  padding: 8px 8px;
+    font-size: 18px;
 }
 
 #scores li:nth-child(even) {
-  background-color: #ddd;
+  background-color: #dddddd91;
 }
 
-#refresh {
-  padding: 4px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #3333337e;
-  background: none;
+.d-width {
+  min-width: 350px;
+  margin: 12px;
 }
 
 .sub-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-align: center;
+  color: #333333e7;
+    font-size: 24px;
+    font-weight: 600;
+    
+}
+
+.input-field {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 ul {
@@ -379,43 +427,76 @@ ul {
 }
 
 .sub-headline {
-  margin-bottom: 24px;
   display: flex;
-  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
 }
 
 .l-container {
   display: flex;
   justify-content: center;
   align-items: first baseline;
-  gap: 40px;
+  padding: 0 24px;
+  gap: 24px;
 }
 
 form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
 }
-
-input,
-#submit {
+input {
   padding: 4px;
   font-size: 1rem;
 }
 
-#submit {
-  width: 90px;
+.btn {
   align-self: flex-end;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #3333337e;
-  background: none;
+  background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .hidden {
   display: none;
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,8BAA8B;EAC9B,eAAe;EACf,gBAAgB;EAChB,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;EACE,SAAS;EACT,UAAU;EACV,cAAc;AAChB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,YAAY;EACZ,gBAAgB;EAChB,iBAAiB;EACjB,gBAAgB;EAChB,gBAAgB;AAClB;;AAEA;EACE,iBAAiB;EACjB,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,SAAS;EACT,UAAU;AACZ;;AAEA;EACE,mBAAmB;EACnB,aAAa;EACb,SAAS;AACX;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,2BAA2B;EAC3B,SAAS;AACX;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;;EAEE,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,WAAW;EACX,oBAAoB;EACpB,gBAAgB;EAChB,iBAAiB;EACjB,gBAAgB;EAChB,gBAAgB;AAClB;;AAEA;EACE,aAAa;AACf","sourcesContent":["body {\n  font-family: Arial, sans-serif;\n  font-size: 16px;\n  font-weight: 400;\n  background-color: #f4f4f4;\n  box-sizing: border-box;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  color: #3d3d3d;\n}\n\nheader {\n  padding: 32px;\n}\n\n#scores {\n  border: 1px solid #333;\n}\n\n#scores li {\n  padding: 4px 8px;\n}\n\n#scores li:nth-child(even) {\n  background-color: #ddd;\n}\n\n#refresh {\n  padding: 4px;\n  font-weight: 600;\n  font-size: 0.9rem;\n  color: #3333337e;\n  background: none;\n}\n\n.sub-title {\n  font-size: 1.5rem;\n  font-weight: 600;\n  text-align: center;\n}\n\nul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n.sub-headline {\n  margin-bottom: 24px;\n  display: flex;\n  gap: 12px;\n}\n\n.l-container {\n  display: flex;\n  justify-content: center;\n  align-items: first baseline;\n  gap: 40px;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n\ninput,\n#submit {\n  padding: 4px;\n  font-size: 1rem;\n}\n\n#submit {\n  width: 90px;\n  align-self: flex-end;\n  font-weight: 600;\n  font-size: 0.9rem;\n  color: #3333337e;\n  background: none;\n}\n\n.hidden {\n  display: none;\n}\n"],"sourceRoot":""}]);
+
+#status {
+  padding: 10px;
+  background-color: #ffc107;
+  color: #333;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#status.success {
+  display: block;
+  background-color: #28a745;
+  color: #fff;
+}
+
+#status.error {
+  display: block;
+  background-color: #dc3545;
+  color: #fff;
+}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAEA;EACE,kCAAkC;EAClC,kBAAkB;EAClB,eAAe;EACf,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;EACE,SAAS;EACT,UAAU;EACV,cAAc;AAChB;;;;AAIA;;;EAGE,cAAc;EACd,WAAW;AACb;;AAEA;EACE,kBAAkB;EAClB,0CAA0C;EAC1C,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB,WAAW;EACX,yBAAyB;EACzB,oBAAoB;AACtB;;AAEA;EACE,yBAAyB;EACzB,aAAa;EACb,mBAAmB;EACnB,0CAA0C;EAC1C,YAAY;AACd;;;AAGA;EACE,sBAAsB;AACxB;;AAEA;EACE,sBAAsB;EACtB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;IACd,eAAe;AACnB;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,gBAAgB;EAChB,YAAY;AACd;;AAEA;EACE,gBAAgB;IACd,eAAe;IACf,gBAAgB;;AAEpB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,gBAAgB;EAChB,SAAS;EACT,UAAU;AACZ;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,8BAA8B;EAC9B,mBAAmB;AACrB;;AAEA;EACE,yBAAyB;EACzB,aAAa;EACb,mBAAmB;EACnB,0CAA0C;EAC1C,YAAY;AACd;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,2BAA2B;EAC3B,eAAe;EACf,SAAS;AACX;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,SAAS;EACT,WAAW;AACb;AACA;EACE,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,oBAAoB;EACpB,yBAAyB;IACvB,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,kBAAkB;IAClB,eAAe;IACf,eAAe;IACf,sCAAsC;AAC1C;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,kBAAkB;EAClB,eAAe;EACf,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,yBAAyB;EACzB,WAAW;AACb;;AAEA;EACE,cAAc;EACd,yBAAyB;EACzB,WAAW;AACb","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap\");\n\nbody {\n  font-family: \"Poppins\", sans-serif;\n  font-style: normal;\n  font-size: 16px;\n  background-color: #f4f4f4;\n  box-sizing: border-box;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  color: #3d3d3d;\n}\n\n\n\nmain,\nheader,\nfooter {\n  margin: 0 auto;\n  width: 100%;\n}\n\nheader {\n  padding: 12px 24px;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);\n  margin-bottom: 32px;\n}\n\nh1 {\n  font-size: 32px;\n  font-weight: bold;\n  color: #333;\n  text-transform: uppercase;\n  letter-spacing: 24px;\n}\n\n.scores-container {\n  background-color: #f7f7f7;\n  padding: 20px;\n  border-radius: 10px;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);\n  width: 300px;\n}\n\n\n.border {\n  border: 1px solid #333;\n}\n\n#scores {\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n#scores li {\n  padding: 8px 8px;\n    font-size: 18px;\n}\n\n#scores li:nth-child(even) {\n  background-color: #dddddd91;\n}\n\n.d-width {\n  min-width: 350px;\n  margin: 12px;\n}\n\n.sub-title {\n  color: #333333e7;\n    font-size: 24px;\n    font-weight: 600;\n    \n}\n\n.input-field {\n  padding: 10px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n  font-size: 16px;\n}\n\nul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n.sub-headline {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 20px;\n}\n\n.form-container {\n  background-color: #f7f7f7;\n  padding: 20px;\n  border-radius: 10px;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);\n  width: 300px;\n}\n\n.l-container {\n  display: flex;\n  justify-content: center;\n  align-items: first baseline;\n  padding: 0 24px;\n  gap: 24px;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  width: 100%;\n}\ninput {\n  padding: 4px;\n  font-size: 1rem;\n}\n\n.btn {\n  align-self: flex-end;\n  background-color: #6c757d;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    padding: 10px 20px;\n    font-size: 18px;\n    cursor: pointer;\n    transition: background-color 0.3s ease;\n}\n\n.hidden {\n  display: none;\n}\n\n#status {\n  padding: 10px;\n  background-color: #ffc107;\n  color: #333;\n  border-radius: 5px;\n  font-size: 16px;\n  margin-top: 10px;\n  text-align: center;\n}\n\n#status.success {\n  display: block;\n  background-color: #28a745;\n  color: #fff;\n}\n\n#status.error {\n  display: block;\n  background-color: #dc3545;\n  color: #fff;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -955,4 +1036,4 @@ window.addEventListener('DOMContentLoaded', init);
 
 /******/ })()
 ;
-//# sourceMappingURL=bundleecb06eb8848bbecb4442.js.map
+//# sourceMappingURL=bundle0ef63bd8b25cc4b0bc29.js.map
