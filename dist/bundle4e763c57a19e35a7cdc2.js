@@ -37,30 +37,30 @@ var handleDisplay = /*#__PURE__*/function () {
           fragment = document.createDocumentFragment();
           scores.forEach(function (item) {
             var newItem = document.createElement('li');
-            newItem.innerHTML = "".concat(item.user, ": ").concat(item.score);
+            newItem.className = 'score-list';
+            newItem.innerHTML = "<p>".concat(item.user, "</p><p class='score-num'>").concat(item.score, "</p>");
             fragment.appendChild(newItem);
           });
           while (scoreContainer.firstChild) {
             scoreContainer.firstChild.remove();
           }
           scoreContainer.appendChild(fragment);
-          console.log(scores);
           if (scores.length > 0) {
             scoreContainer.classList.add('border');
           } else {
-            scoreContainer.innerHTML = '<h2>No Recent Scores</h2><p>Add new scores</P>';
+            scoreContainer.innerHTML = "<div class=\"empty-warning\">\n      <h2>No Recent Scores</h2><p>Add a new score</P>\n      </div>";
           }
-          _context.next = 15;
+          _context.next = 14;
           break;
-        case 12:
-          _context.prev = 12;
+        case 11:
+          _context.prev = 11;
           _context.t0 = _context["catch"](0);
           status.textContent = "".concat(_context.t0, ": Check your Internet");
-        case 15:
+        case 14:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 11]]);
   }));
   return function handleDisplay() {
     return _ref.apply(this, arguments);
@@ -78,8 +78,8 @@ var handleSubmit = /*#__PURE__*/function () {
             break;
           }
           e.preventDefault();
-          status.textContent = 'Creating leaderboard score';
-          status.className = 'hidden';
+          status.classList.remove('hidden');
+          status.textContent = 'Creating leaderboard score...';
           nameInput = document.getElementById('nameInut');
           scoreInput = document.getElementById('scoreInput');
           name = nameInput.value.trim();
@@ -351,8 +351,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
   color: #3d3d3d;
 }
 
-
-
 main,
 header,
 footer {
@@ -362,7 +360,7 @@ footer {
 
 header {
   padding: 12px 24px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 32px;
 }
 
@@ -372,19 +370,25 @@ h1 {
   color: #333;
   text-transform: uppercase;
   letter-spacing: 24px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 
 .scores-container {
   background-color: #f7f7f7;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 300px;
 }
 
-
 .border {
   border: 1px solid #333;
+}
+
+.empty-warning {
+  margin: 12px;
 }
 
 #scores {
@@ -394,7 +398,7 @@ h1 {
 
 #scores li {
   padding: 8px 8px;
-    font-size: 18px;
+  font-size: 18px;
 }
 
 #scores li:nth-child(even) {
@@ -408,9 +412,8 @@ h1 {
 
 .sub-title {
   color: #333333e7;
-    font-size: 24px;
-    font-weight: 600;
-    
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .input-field {
@@ -437,7 +440,7 @@ ul {
   background-color: #f7f7f7;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 300px;
 }
 
@@ -449,12 +452,28 @@ ul {
   gap: 24px;
 }
 
+.score-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-num {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 }
+
 input {
   padding: 4px;
   font-size: 1rem;
@@ -463,13 +482,13 @@ input {
 .btn {
   align-self: flex-end;
   background-color: #6c757d;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .hidden {
@@ -496,7 +515,8 @@ input {
   display: block;
   background-color: #dc3545;
   color: #fff;
-}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAEA;EACE,kCAAkC;EAClC,kBAAkB;EAClB,eAAe;EACf,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;EACE,SAAS;EACT,UAAU;EACV,cAAc;AAChB;;;;AAIA;;;EAGE,cAAc;EACd,WAAW;AACb;;AAEA;EACE,kBAAkB;EAClB,0CAA0C;EAC1C,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB,WAAW;EACX,yBAAyB;EACzB,oBAAoB;AACtB;;AAEA;EACE,yBAAyB;EACzB,aAAa;EACb,mBAAmB;EACnB,0CAA0C;EAC1C,YAAY;AACd;;;AAGA;EACE,sBAAsB;AACxB;;AAEA;EACE,sBAAsB;EACtB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;IACd,eAAe;AACnB;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,gBAAgB;EAChB,YAAY;AACd;;AAEA;EACE,gBAAgB;IACd,eAAe;IACf,gBAAgB;;AAEpB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,gBAAgB;EAChB,SAAS;EACT,UAAU;AACZ;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,8BAA8B;EAC9B,mBAAmB;AACrB;;AAEA;EACE,yBAAyB;EACzB,aAAa;EACb,mBAAmB;EACnB,0CAA0C;EAC1C,YAAY;AACd;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,2BAA2B;EAC3B,eAAe;EACf,SAAS;AACX;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,SAAS;EACT,WAAW;AACb;AACA;EACE,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,oBAAoB;EACpB,yBAAyB;IACvB,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,kBAAkB;IAClB,eAAe;IACf,eAAe;IACf,sCAAsC;AAC1C;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,kBAAkB;EAClB,eAAe;EACf,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,yBAAyB;EACzB,WAAW;AACb;;AAEA;EACE,cAAc;EACd,yBAAyB;EACzB,WAAW;AACb","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap\");\n\nbody {\n  font-family: \"Poppins\", sans-serif;\n  font-style: normal;\n  font-size: 16px;\n  background-color: #f4f4f4;\n  box-sizing: border-box;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  color: #3d3d3d;\n}\n\n\n\nmain,\nheader,\nfooter {\n  margin: 0 auto;\n  width: 100%;\n}\n\nheader {\n  padding: 12px 24px;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);\n  margin-bottom: 32px;\n}\n\nh1 {\n  font-size: 32px;\n  font-weight: bold;\n  color: #333;\n  text-transform: uppercase;\n  letter-spacing: 24px;\n}\n\n.scores-container {\n  background-color: #f7f7f7;\n  padding: 20px;\n  border-radius: 10px;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);\n  width: 300px;\n}\n\n\n.border {\n  border: 1px solid #333;\n}\n\n#scores {\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n#scores li {\n  padding: 8px 8px;\n    font-size: 18px;\n}\n\n#scores li:nth-child(even) {\n  background-color: #dddddd91;\n}\n\n.d-width {\n  min-width: 350px;\n  margin: 12px;\n}\n\n.sub-title {\n  color: #333333e7;\n    font-size: 24px;\n    font-weight: 600;\n    \n}\n\n.input-field {\n  padding: 10px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n  font-size: 16px;\n}\n\nul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n.sub-headline {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 20px;\n}\n\n.form-container {\n  background-color: #f7f7f7;\n  padding: 20px;\n  border-radius: 10px;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);\n  width: 300px;\n}\n\n.l-container {\n  display: flex;\n  justify-content: center;\n  align-items: first baseline;\n  padding: 0 24px;\n  gap: 24px;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  width: 100%;\n}\ninput {\n  padding: 4px;\n  font-size: 1rem;\n}\n\n.btn {\n  align-self: flex-end;\n  background-color: #6c757d;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    padding: 10px 20px;\n    font-size: 18px;\n    cursor: pointer;\n    transition: background-color 0.3s ease;\n}\n\n.hidden {\n  display: none;\n}\n\n#status {\n  padding: 10px;\n  background-color: #ffc107;\n  color: #333;\n  border-radius: 5px;\n  font-size: 16px;\n  margin-top: 10px;\n  text-align: center;\n}\n\n#status.success {\n  display: block;\n  background-color: #28a745;\n  color: #fff;\n}\n\n#status.error {\n  display: block;\n  background-color: #dc3545;\n  color: #fff;\n}"],"sourceRoot":""}]);
+}
+`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAEA;EACE,kCAAkC;EAClC,kBAAkB;EAClB,eAAe;EACf,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;EACE,SAAS;EACT,UAAU;EACV,cAAc;AAChB;;AAEA;;;EAGE,cAAc;EACd,WAAW;AACb;;AAEA;EACE,kBAAkB;EAClB,wCAAwC;EACxC,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB,WAAW;EACX,yBAAyB;EACzB,oBAAoB;EACpB,kBAAkB;EAClB,2CAA2C;EAC3C,sCAAsC;AACxC;;AAEA;EACE,yBAAyB;EACzB,aAAa;EACb,mBAAmB;EACnB,wCAAwC;EACxC,YAAY;AACd;;AAEA;EACE,sBAAsB;AACxB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,sBAAsB;EACtB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,eAAe;AACjB;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,gBAAgB;EAChB,YAAY;AACd;;AAEA;EACE,gBAAgB;EAChB,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,gBAAgB;EAChB,SAAS;EACT,UAAU;AACZ;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,8BAA8B;EAC9B,mBAAmB;AACrB;;AAEA;EACE,yBAAyB;EACzB,aAAa;EACb,mBAAmB;EACnB,wCAAwC;EACxC,YAAY;AACd;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,2BAA2B;EAC3B,eAAe;EACf,SAAS;AACX;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,mBAAmB;AACrB;;AAEA;EACE,iBAAiB;EACjB,iBAAiB;EACjB,kBAAkB;EAClB,wCAAwC;EACxC,2CAA2C;EAC3C,sCAAsC;AACxC;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,SAAS;EACT,WAAW;AACb;;AAEA;EACE,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,oBAAoB;EACpB,yBAAyB;EACzB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,kBAAkB;EAClB,eAAe;EACf,eAAe;EACf,sCAAsC;AACxC;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,WAAW;EACX,kBAAkB;EAClB,eAAe;EACf,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,yBAAyB;EACzB,WAAW;AACb;;AAEA;EACE,cAAc;EACd,yBAAyB;EACzB,WAAW;AACb","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap\");\n\nbody {\n  font-family: \"Poppins\", sans-serif;\n  font-style: normal;\n  font-size: 16px;\n  background-color: #f4f4f4;\n  box-sizing: border-box;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  color: #3d3d3d;\n}\n\nmain,\nheader,\nfooter {\n  margin: 0 auto;\n  width: 100%;\n}\n\nheader {\n  padding: 12px 24px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  margin-bottom: 32px;\n}\n\nh1 {\n  font-size: 32px;\n  font-weight: bold;\n  color: #333;\n  text-transform: uppercase;\n  letter-spacing: 24px;\n  border-radius: 5px;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);\n  transition: background-color 0.3s ease;\n}\n\n.scores-container {\n  background-color: #f7f7f7;\n  padding: 20px;\n  border-radius: 10px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  width: 300px;\n}\n\n.border {\n  border: 1px solid #333;\n}\n\n.empty-warning {\n  margin: 12px;\n}\n\n#scores {\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n#scores li {\n  padding: 8px 8px;\n  font-size: 18px;\n}\n\n#scores li:nth-child(even) {\n  background-color: #dddddd91;\n}\n\n.d-width {\n  min-width: 350px;\n  margin: 12px;\n}\n\n.sub-title {\n  color: #333333e7;\n  font-size: 24px;\n  font-weight: 600;\n}\n\n.input-field {\n  padding: 10px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n  font-size: 16px;\n}\n\nul {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n.sub-headline {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 20px;\n}\n\n.form-container {\n  background-color: #f7f7f7;\n  padding: 20px;\n  border-radius: 10px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  width: 300px;\n}\n\n.l-container {\n  display: flex;\n  justify-content: center;\n  align-items: first baseline;\n  padding: 0 24px;\n  gap: 24px;\n}\n\n.score-list {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.score-num {\n  font-weight: bold;\n  padding: 5px 10px;\n  border-radius: 5px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);\n  transition: background-color 0.3s ease;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  width: 100%;\n}\n\ninput {\n  padding: 4px;\n  font-size: 1rem;\n}\n\n.btn {\n  align-self: flex-end;\n  background-color: #6c757d;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  padding: 10px 20px;\n  font-size: 18px;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\n\n.hidden {\n  display: none;\n}\n\n#status {\n  padding: 10px;\n  background-color: #ffc107;\n  color: #333;\n  border-radius: 5px;\n  font-size: 16px;\n  margin-top: 10px;\n  text-align: center;\n}\n\n#status.success {\n  display: block;\n  background-color: #28a745;\n  color: #fff;\n}\n\n#status.error {\n  display: block;\n  background-color: #dc3545;\n  color: #fff;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1036,4 +1056,4 @@ window.addEventListener('DOMContentLoaded', init);
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle0ef63bd8b25cc4b0bc29.js.map
+//# sourceMappingURL=bundle4e763c57a19e35a7cdc2.js.map
