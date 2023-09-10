@@ -35,6 +35,10 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
+        test: /\.scss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -45,9 +49,17 @@ module.exports = {
         },
       },
       {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'ts-loader',
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'], // Specify the file extensions to resolve
   },
 };

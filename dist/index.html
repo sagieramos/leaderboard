@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-<script defer src="bundle4e763c57a19e35a7cdc2.js"></script></head>
+<script defer src="bundle4a2d49d3c852cc777516.js"></script></head>
 <body>
+    <div id="blackout" class="hidden"></div>
     <header>
-        <h1>Leaderboard</h1>
+        <h1 id="headline">Leader <span>Board</span></h1>
     </header>
     <main>
         <section class="l-container">
@@ -18,7 +19,7 @@
                 </ul>
                 <ul id="scores"></ul>
             </article>
-            <article class="form-container">
+            <article id="form-container" class="form-container hide-form">
                 <h2 class="sub-title sub-headline">Add your score</h2>
                 <form action="#">
                     <input class="input-field" type="text" id="nameInut" name="name" placeholder="Your name" required maxlength="20">
@@ -28,6 +29,7 @@
                 </form>
             </article>
         </section>
+        <img id="add-icon" alt="add">
     </main>
     <footer></footer>
 </body>

@@ -49,7 +49,14 @@ $breakpoint-large: 1200px;
 body {
   font-size: 16px;
   width: 100%;
+  height: 90vh;
   position: relative;
+
+  #add-icon {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+  }
   
   li {
     list-style: none;
@@ -70,10 +77,12 @@ body {
   }
 
   header {
+    @include position(0, 0);
     width: 100%;
     padding: 12px 24px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 32px;
+
     h1 {
       font: {
         size: 1.1rem;
@@ -94,6 +103,7 @@ body {
 
   main {
     width: 100%;
+    margin-top: 64px;
 
     .l-container {
       width: 100%;
@@ -109,6 +119,12 @@ body {
     #headline {
       letter-spacing: 8px;
       font-size: 1rem;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-small) {
+    #add-icon {
+      display: none;
     }
   }
 
@@ -134,7 +150,7 @@ body {
 main {
   width: 100%;
   margin: 0 auto;
-  
+
   #status {
     padding: 10px;
     background-color: #ffc107;
@@ -241,6 +257,12 @@ main {
     }
   }
 
+  @media screen and (max-width: $breakpoint-small) {
+    .hide-form {
+      display: none;
+    }
+  }
+
   @media screen and (min-width: $breakpoint-medium) {
     max-width: 80%;
     .form-container {
@@ -253,7 +275,6 @@ main {
     .form-container {
       @include position(64px, 15%); 
     }
-
   }
 }
 
@@ -269,8 +290,10 @@ main {
   background-color:#212121; 
   opacity:0.5; 
   width:100%; 
-  height:100%; 
-  position:absolute; 
+  height:100vh; 
+  position: fixed; 
+  top: 0;
+  z-index: 2;
   transition: opacity 0.5s ease;
 }
 
