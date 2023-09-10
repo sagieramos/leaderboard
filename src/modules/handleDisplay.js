@@ -1,8 +1,8 @@
-import Leaderboard from './util.js';
+import Leaderboard from './util.ts';
 
 const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
 
-const leaderboard = new Leaderboard(baseUrl);
+const leaderboard = new Leaderboard(baseUrl, 'Tf159LB89JEGXiktCs8K');
 
 const scoreContainer = document.getElementById('scores');
 const status = document.getElementById('status');
